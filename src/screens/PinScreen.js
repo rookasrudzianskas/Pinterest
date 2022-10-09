@@ -25,8 +25,8 @@ const PinScreen = () => {
                         <Ionicons className="" name="chevron-back-outline" size={30} color="white" />
                     </TouchableOpacity>
                 </View>
-                <View className="bg-gray-100 flex-1 items-center justify-start pt-24">
-                    <Text className="text-xl font-bold mx-8">
+                <View className="bg-gray-100 flex-1 items-center justify-start pt-4">
+                    <Text className="text-xl font-bold mx-8 tracking-wider">
                         Harley Davidson Sportster Iron
                         883 Custom ~ Rider & Helmet
                         ModifiedX
