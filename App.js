@@ -15,8 +15,7 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <PinScreen />
-        {/*<Navigation colorScheme={colorScheme} />*/}
+        <Navigation colorScheme={colorScheme} />
         <StatusBar style="light" />
       </SafeAreaProvider>
     );
