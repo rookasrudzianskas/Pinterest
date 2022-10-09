@@ -1,6 +1,6 @@
 import { Text, View } from '../components/Themed';
 import {StatusBar} from "expo-status-bar";
-import {Image} from "react-native";
+import {Image, ScrollView} from "react-native";
 import {StyleSheet} from "react-native";
 import Pin from "../components/Pin";
 import PinsData from '../assets/data/pins';
@@ -8,10 +8,11 @@ import PinsData from '../assets/data/pins';
 const HomeScreen =({ navigation }) => {
   return (
       <View className="flex-1" style={styles.container}>
-          {PinsData.map((pin) => (
-              <Pin key={pin.id} pin={pin} />
-          ))}
-        <StatusBar style="auto" />
+          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 50}}>
+              {PinsData.map((pin) => (
+                  <Pin key={pin.id} pin={pin} />
+              ))}
+          </ScrollView>
       </View>
   );
 }
