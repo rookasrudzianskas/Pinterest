@@ -10,10 +10,10 @@ const HomeScreen =({ navigation }) => {
       <ScrollView contentContainerStyle={{paddingBottom: 100}} showsVerticalScrollIndicator={false}>
           <View className="flex-1" style={styles.container}>
               <View style={{backgroundColor: '#94ffa955', flex: 1}}>
-                  {PinsData.map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
+                  {PinsData.filter((item, index) => index % 2 === 0).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
               </View>
               <View style={{backgroundColor: '#94ffa9', flex: 1}}>
-                  {PinsData.map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
+                  {PinsData.filter((item, index) => index % 2 !== 0).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
               </View>
           </View>
       </ScrollView>
