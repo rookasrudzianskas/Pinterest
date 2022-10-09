@@ -2,11 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'react-native';
 import {Ionicons} from "@expo/vector-icons";
 import pinsData from '../assets/data/pins';
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 const PinScreen = () => {
     const [ratio, setRatio] = useState(1);
     const [clicked, setClicked] = useState(false);
+    const insets = useSafeAreaInsets();
     const image = pinsData[1].image;
+    // const navigation = useNavigation();
 
 
     useEffect(() => {
@@ -17,7 +20,7 @@ const PinScreen = () => {
     }, [image]);
 
     const goBack = () => {
-
+        // console.warn('Go back');
     }
 
 
