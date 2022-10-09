@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {AntDesign} from "@expo/vector-icons";
 
@@ -9,8 +9,10 @@ const Pin = ({pin: {id, title, image}}) => {
 
     }
 
-    // Here we are using the Image.getSize() method to get the width and height of the image and calculate the ratio.
-    Image.getSize(image, (width, height) => setRatio(width / height));
+    useEffect(() => {
+        // Here we are using the Image.getSize() method to get the width and height of the image and calculate the ratio.
+        Image.getSize(image, (width, height) => setRatio(width / height));
+    }, []);
 
     return (
         <View style={styles.pin}>
