@@ -16,13 +16,17 @@ const PinScreen = () => {
         }
     }, [image]);
 
+    const goBack = () => {
+
+    }
+
 
     return (
         <SafeAreaView className="bg-black">
             <View className="h-screen bg-black relative">
                 <View className="bg-black mt-4">
                     <Image style={[styles.image, {borderTopLeftRadius: 35, borderTopRightRadius: 35, aspectRatio: ratio}]} source={{uri: image}} />
-                    <TouchableOpacity className="absolute top-5 left-5" activeOpacity={0.7}>
+                    <TouchableOpacity onPress={goBack} className="absolute top-5 left-5" activeOpacity={0.7}>
                         <Ionicons className="" name="chevron-back-outline" size={30} color="white" />
                     </TouchableOpacity>
                 </View>
