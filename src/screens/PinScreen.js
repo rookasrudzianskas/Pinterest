@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'react-native';
 import {Ionicons} from "@expo/vector-icons";
+import pinsData from '../assets/data/pins';
 
 const PinScreen = () => {
     const [ratio, setRatio] = useState(1);
     const [clicked, setClicked] = useState(false);
-    const image = 'https://images.unsplash.com/photo-1664575196079-9ac04582854b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80';
+    const image = pinsData[1].image;
 
 
     useEffect(() => {
@@ -26,7 +27,7 @@ const PinScreen = () => {
                     </TouchableOpacity>
                 </View>
                 <View className="bg-gray-100 flex-1 items-center justify-start pt-4">
-                    <Text className="text-xl font-bold mx-8 tracking-wider">
+                    <Text className="text-xl font-bold mx-8 tracking-wider" style={{lineHeight: 35}}>
                         Harley Davidson Sportster Iron
                         883 Custom ~ Rider & Helmet
                         ModifiedX
