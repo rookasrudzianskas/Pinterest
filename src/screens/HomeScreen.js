@@ -13,7 +13,7 @@ const HomeScreen =({ navigation }) => {
                   {PinsData.filter((item, index) => index % 2 === 0).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
               </View>
               <View style={{backgroundColor: '#94ffa9', flex: 1}}>
-                  {PinsData.filter((item, index) => index % 2 !== 0).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
+                  {PinsData.filter((item, index) => index % 2 === 1).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
               </View>
           </View>
       </ScrollView>
