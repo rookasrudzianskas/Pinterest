@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {AntDesign} from "@expo/vector-icons";
 
 const Pin = ({pin: {id, title, image}}) => {
-    const [] = useState();
+    const [ratio, setRatio] = useState();
 
     const onLine = () => {
 
