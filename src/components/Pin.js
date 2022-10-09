@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         borderRadius: 25,
-        aspectRatio: 1 / 1,
+        aspectRatio: 1 / 2,
     }
 })
