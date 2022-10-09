@@ -17,7 +17,7 @@ const Pin = ({pin: {id, title, image}}) => {
     }, [image]);
 
     return (
-        <View style={styles.pin}>
+        <TouchableOpacity activeOpacity={0.9} style={styles.pin}>
             <View className="relative">
                 <Image style={[styles.image, {aspectRatio: ratio}]} className="" source={{uri: image}} />
                 <TouchableOpacity onPress={() => setClicked(!clicked)} className="absolute bg-[#D3CFD4] rounded-full p-1 bottom-[10px] right-[13px]" onPres={onLine} activeOpacity={0.7}>
@@ -25,7 +25,7 @@ const Pin = ({pin: {id, title, image}}) => {
                 </TouchableOpacity>
             </View>
             <Text className="font-[600] text-[16px] m-2 text-black text-gray-800" style={{lineHeight: 22}} numberOfLines={2}>{title}</Text>
-        </View>
+        </TouchableOpacity>
     );
 };
 
