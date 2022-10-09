@@ -9,10 +9,10 @@ const HomeScreen =({ navigation }) => {
   return (
       <ScrollView contentContainerStyle={{paddingBottom: 100}} showsVerticalScrollIndicator={false}>
           <View className="flex-1" style={styles.container}>
-              <View style={{backgroundColor: '#94ffa955', flex: 1}}>
+              <View style={styles.colOne}>
                   {PinsData.filter((item, index) => index % 2 === 0).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
               </View>
-              <View style={{backgroundColor: '#94ffa9', flex: 1}}>
+              <View style={styles.colTwo}>
                   {PinsData.filter((item, index) => index % 2 === 1).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
               </View>
           </View>
@@ -27,4 +27,10 @@ const styles = StyleSheet.create({
       padding: 10,
       flexDirection: 'row',
     },
+    colOne: {
+        flex: 1,
+    },
+    colTwo: {
+        flex: 1,
+    }
 });
