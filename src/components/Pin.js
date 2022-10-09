@@ -10,9 +10,11 @@ const Pin = ({pin: {id, title, image}}) => {
     }
 
     useEffect(() => {
-        // Here we are using the Image.getSize() method to get the width and height of the image and calculate the ratio.
-        Image.getSize(image, (width, height) => setRatio(width / height));
-    }, []);
+        if(image) {
+            // Here we are using the Image.getSize() method to get the width and height of the image and calculate the ratio.
+            Image.getSize(image, (width, height) => setRatio(width / height));
+        }
+    }, [image]);
 
     return (
         <View style={styles.pin}>
