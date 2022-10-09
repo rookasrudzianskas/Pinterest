@@ -24,7 +24,7 @@ const Pin = ({pin: {id, title, image}}) => {
                     {clicked ? <AntDesign name="heart" size={17} color="red" /> : <AntDesign name="hearto" size={17} color="black" />}
                 </TouchableOpacity>
             </View>
-            <Text className="font-bold text-[18px] m-3 text-black">{title}</Text>
+            <Text className="font-bold text-[16px] m-3 text-black text-gray-800" style={{lineHeight: 22}}>{title}</Text>
         </View>
     );
 };
