@@ -1,11 +1,19 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {AntDesign} from "@expo/vector-icons";
 
-const Pin = () => {
+const Pin = ({pin: {id, title, image}}) => {
+    const onLine = () => {
+
+    }
+
     return (
         <View style={styles.pin}>
-            <Image style={styles.image} className="" source={{uri: 'https://ih1.redbubble.net/image.966976056.3207/ssrco,mhoodiez,mens,101010:01c5ca27c6,front,square_product,600x600-bg,f8f8f8.jpg'}} />
-            <Text className="font-bold text-[18px] m-3 text-black">rookas Hoodie</Text>
+            <Image style={styles.image} className="relative" source={{uri: image}} />
+            <TouchableOpacity className="absolute bg-[#D3CFD4] rounded-full p-1 bottom-[60px] right-[20px]" onPres={onLine} activeOpacity={0.7}>
+                <AntDesign name="hearto" size={22} color="black" />
+            </TouchableOpacity>
+            <Text className="font-bold text-[18px] m-3 text-black">{title}</Text>
         </View>
     );
 };

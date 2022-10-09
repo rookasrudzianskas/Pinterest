@@ -9,7 +9,7 @@ const HomeScreen =({ navigation }) => {
   return (
       <View className="flex-1" style={styles.container}>
           {PinsData.map((pin) => (
-              <Pin key={pin.id} image={pin.image} title={pin.title} />
+              <Pin key={pin.id} pin={pin} />
           ))}
         <StatusBar style="auto" />
       </View>
