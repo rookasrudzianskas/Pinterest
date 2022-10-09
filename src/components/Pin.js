@@ -9,6 +9,8 @@ const Pin = ({pin: {id, title, image}}) => {
 
     }
 
+    Image.getSize(image, (width, height) => setRatio(width / height));
+
     return (
         <View style={styles.pin}>
             <View className="relative">
