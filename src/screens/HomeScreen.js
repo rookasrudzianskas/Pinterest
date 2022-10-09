@@ -7,7 +7,7 @@ import PinsData from '../assets/data/pins';
 
 const HomeScreen =({ navigation }) => {
   return (
-      <ScrollView contentContainerStyle={{paddingBottom: 100}} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{paddingBottom: 0}} showsVerticalScrollIndicator={false}>
           <View className="flex-1" style={styles.container}>
               <View style={styles.colOne}>
                   {PinsData.filter((item, index) => index % 2 === 0).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
