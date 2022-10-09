@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     pin:{
-        width: '50%',
+        width: '100%',
+        padding: 4,
     },
     image: {
         width: '100%',

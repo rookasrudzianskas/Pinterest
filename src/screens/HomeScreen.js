@@ -9,10 +9,10 @@ const HomeScreen =({ navigation }) => {
   return (
       <View className="flex-1" style={styles.container}>
           <View style={{backgroundColor: '#94ffa955', flex: 1}}>
-
+              <Pin pin={PinsData[0]} />
           </View>
           <View style={{backgroundColor: '#94ffa9', flex: 1}}>
-
+              <Pin pin={PinsData[1]} />
           </View>
       </View>
   );
