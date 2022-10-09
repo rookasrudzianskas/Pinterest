@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
         height: 200,
         borderRadius: 25,
     }
-})
+});
