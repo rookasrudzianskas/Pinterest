@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {AntDesign} from "@expo/vector-icons";
 
 const Pin = ({pin: {id, title, image}}) => {
-    const [ratio, setRatio] = useState();
+    const [ratio, setRatio] = useState(1);
 
     const onLine = () => {
 
@@ -12,7 +12,7 @@ const Pin = ({pin: {id, title, image}}) => {
     return (
         <View style={styles.pin}>
             <View className="relative">
-                <Image style={styles.image} className="" source={{uri: image}} />
+                <Image style={[styles.image, {aspectRatio: ratio}]} className="" source={{uri: image}} />
                 <TouchableOpacity className="absolute bg-[#D3CFD4] rounded-full p-1 bottom-[10px] right-[13px]" onPres={onLine} activeOpacity={0.7}>
                     <AntDesign name="hearto" size={17} color="black" />
                 </TouchableOpacity>
@@ -37,6 +37,5 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         borderRadius: 25,
-        aspectRatio: 1 / 2,
     }
 })
