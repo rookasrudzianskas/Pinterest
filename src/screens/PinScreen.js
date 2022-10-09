@@ -3,13 +3,15 @@ import {Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'rea
 import {Ionicons} from "@expo/vector-icons";
 import pinsData from '../assets/data/pins';
 import {useSafeAreaInsets} from "react-native-safe-area-context";
+import {useNavigation, useRoute} from "@react-navigation/native";
 
 const PinScreen = () => {
     const [ratio, setRatio] = useState(1);
     const [clicked, setClicked] = useState(false);
     const insets = useSafeAreaInsets();
-    const image = pinsData[1].image;
-    // const navigation = useNavigation();
+    const navigation = useNavigation();
+    const route = useRoute();
+    const {id, title, image} = route.params;
 
 
     useEffect(() => {
@@ -21,6 +23,7 @@ const PinScreen = () => {
 
     const goBack = () => {
         // console.warn('Go back');
+        navigation.goBack();
     }
 
 
@@ -35,9 +38,7 @@ const PinScreen = () => {
                 </View>
                 <View className="bg-gray-100 flex-1 items-center justify-start pt-4">
                     <Text className="text-xl font-bold mx-8 tracking-wider" style={{lineHeight: 35}}>
-                        Harley Davidson Sportster Iron
-                        883 Custom ~ Rider & Helmet
-                        ModifiedX
+                        {title}
                     </Text>
                 </View>
             </View>
