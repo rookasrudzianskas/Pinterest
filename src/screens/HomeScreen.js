@@ -8,7 +8,12 @@ import PinsData from '../assets/data/pins';
 const HomeScreen =({ navigation }) => {
   return (
       <View className="flex-1" style={styles.container}>
-          <FlatList showsVerticalScrollIndicator={false} data={PinsData}  numColumns={2} renderItem={({item}) => <Pin key={item.id} pin={item} />} />
+          <View style={{backgroundColor: '#94ffa955', flex: 1}}>
+
+          </View>
+          <View style={{backgroundColor: '#94ffa9', flex: 1}}>
+
+          </View>
       </View>
   );
 }
@@ -17,17 +22,7 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
       padding: 10,
+      flexDirection: 'row',
     },
-    pin:{
-        width: '100%',
-    },
-    image: {
-        width: '100%',
-        height: 200,
-        borderRadius: 25,
-    }
 });
