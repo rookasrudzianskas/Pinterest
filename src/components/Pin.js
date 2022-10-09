@@ -4,7 +4,7 @@ import {AntDesign} from "@expo/vector-icons";
 
 const Pin = ({pin: {id, title, image}}) => {
     const [ratio, setRatio] = useState(1);
-
+    const [clicked, setClicked] = useState(false);
     const onLine = () => {
 
     }
@@ -20,8 +20,8 @@ const Pin = ({pin: {id, title, image}}) => {
         <View style={styles.pin}>
             <View className="relative">
                 <Image style={[styles.image, {aspectRatio: ratio}]} className="" source={{uri: image}} />
-                <TouchableOpacity className="absolute bg-[#D3CFD4] rounded-full p-1 bottom-[10px] right-[13px]" onPres={onLine} activeOpacity={0.7}>
-                    <AntDesign name="hearto" size={17} color="black" />
+                <TouchableOpacity onPress={() => setClicked(!clicked)} className="absolute bg-[#D3CFD4] rounded-full p-1 bottom-[10px] right-[13px]" onPres={onLine} activeOpacity={0.7}>
+                    {clicked ? <AntDesign name="heart" size={17} color="red" /> : <AntDesign name="hearto" size={17} color="black" />}
                 </TouchableOpacity>
             </View>
             <Text className="font-bold text-[18px] m-3 text-black">{title}</Text>
