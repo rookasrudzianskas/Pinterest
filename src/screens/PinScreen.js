@@ -11,15 +11,17 @@ const PinScreen = () => {
     const insets = useSafeAreaInsets();
     const navigation = useNavigation();
     const route = useRoute();
-    const {id, title, image} = route.params;
+    const pinId = route?.params?.id;
+
+    const pin = pinsData.find(pin => pin.id === pinId);
 
 
     useEffect(() => {
-        if(image) {
+        if(pin?.image) {
             // Here we are using the Image.getSize() method to get the width and height of the image and calculate the ratio.
-            Image.getSize(image, (width, height) => setRatio(width / height));
+            Image.getSize(pin.image, (width, height) => setRatio(width / height));
         }
-    }, [image]);
+    }, [pin.image]);
 
     const goBack = () => {
         // console.warn('Go back');
@@ -31,14 +33,14 @@ const PinScreen = () => {
         <SafeAreaView className="bg-black">
             <View className="h-screen bg-black relative">
                 <View className="bg-black mt-4">
-                    <Image style={[styles.image, {borderTopLeftRadius: 35, borderTopRightRadius: 35, aspectRatio: ratio}]} source={{uri: image}} />
+                    <Image style={[styles.image, {borderTopLeftRadius: 35, borderTopRightRadius: 35, aspectRatio: ratio}]} source={{uri: pin.image}} />
                     <TouchableOpacity onPress={goBack} className="absolute top-5 left-5" activeOpacity={0.7}>
                         <Ionicons className="" name="chevron-back-outline" size={30} color="white" />
                     </TouchableOpacity>
                 </View>
                 <View className="bg-gray-100 flex-1 items-center justify-start pt-4">
                     <Text className="text-xl font-bold mx-8 tracking-wider" style={{lineHeight: 35}}>
-                        {title}
+                        {pin.title}
                     </Text>
                 </View>
             </View>

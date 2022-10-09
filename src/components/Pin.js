@@ -21,7 +21,7 @@ const Pin = ({pin: {id, title, image}}) => {
     const goToPinPage = () => {
         // console.warn('Go to pin page');
         // navigate to pin screen
-        navigation.navigate('Pin', { id, title, image });
+        navigation.navigate('Pin', { id });
     }
 
     return (
