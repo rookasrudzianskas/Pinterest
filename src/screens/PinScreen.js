@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'react-native';
 import {Ionicons} from "@expo/vector-icons";
 
 const PinScreen = () => {
@@ -17,14 +17,23 @@ const PinScreen = () => {
 
 
     return (
-        <View className="h-screen bg-black relative">
-            <View className="mt-10 bg-black ">
-                <Image style={[styles.image, {borderTopLeftRadius: 35, borderTopRightRadius: 35, aspectRatio: ratio}]} source={{uri: image}} />
-                <TouchableOpacity className="absolute top-5 left-5" activeOpacity={0.7}>
-                    <Ionicons className="" name="chevron-back-outline" size={30} color="white" />
-                </TouchableOpacity>
+        <SafeAreaView className="bg-black">
+            <View className="h-screen bg-black relative">
+                <View className="bg-black mt-4">
+                    <Image style={[styles.image, {borderTopLeftRadius: 35, borderTopRightRadius: 35, aspectRatio: ratio}]} source={{uri: image}} />
+                    <TouchableOpacity className="absolute top-5 left-5" activeOpacity={0.7}>
+                        <Ionicons className="" name="chevron-back-outline" size={30} color="white" />
+                    </TouchableOpacity>
+                </View>
+                <View className="bg-gray-100 flex-1 items-center justify-start pt-24">
+                    <Text className="text-xl font-bold mx-8">
+                        Harley Davidson Sportster Iron
+                        883 Custom ~ Rider & Helmet
+                        ModifiedX
+                    </Text>
+                </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 
