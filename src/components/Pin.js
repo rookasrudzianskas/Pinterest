@@ -16,10 +16,11 @@ const Pin = ({pin: {id, title, image}}) => {
     }
 
     const fetchImage = async () => {
-        const { presignedUrl, error } = await nhost.storage.getPresignedUrl({
+        const result = await nhost.storage.getPresignedUrl({
             fileId: image,
         });
-        console.log("🚀",presignedUrl);
+        setImageUri(result);
+        console.log(result);
     }
 
     useEffect(() => {
@@ -27,11 +28,11 @@ const Pin = ({pin: {id, title, image}}) => {
     }, [image]);
 
     useEffect(() => {
-        if(image) {
+        if(imageUri) {
             // Here we are using the Image.getSize() method to get the width and height of the image and calculate the ratio.
-            Image.getSize(image, (width, height) => setRatio(width / height));
+            Image.getSize(imageUri, (width, height) => setRatio(width / height));
         }
-    }, [image]);
+    }, [imageUri]);
 
     const goToPinPage = () => {
         // console.warn('Go to pin page');
