@@ -19,7 +19,9 @@ const Pin = ({pin: {id, title, image}}) => {
         const result = await nhost.storage.getPresignedUrl({
             fileId: image,
         });
-        setImageUri(result);
+        if(result.presignedUrl?.url) {
+            setImageUri(result.presignedUrl.url);
+        }
         console.log(result);
     }
 
@@ -43,7 +45,7 @@ const Pin = ({pin: {id, title, image}}) => {
     return (
         <TouchableOpacity onPress={goToPinPage} activeOpacity={0.9} style={styles.pin}>
             <View className="relative">
-                <Image style={[styles.image, {aspectRatio: ratio}]} className="" source={{uri: image}} />
+                <Image style={[styles.image, {aspectRatio: ratio}]} className="" source={{uri: imageUri}} />
                 <TouchableOpacity onPress={() => setClicked(!clicked)} className="absolute bg-[#D3CFD4] rounded-full p-1 bottom-[10px] right-[13px]" onPres={onLine} activeOpacity={0.7}>
                     {clicked ? <AntDesign name="heart" size={17} color="red" /> : <AntDesign name="hearto" size={17} color="black" />}
                 </TouchableOpacity>

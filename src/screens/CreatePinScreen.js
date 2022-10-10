@@ -53,7 +53,6 @@ const CreatePinScreen = () => {
         } else {
             navigation.goBack('');
         }
-        console.log(data);
     }
 
     const uploadFile = async () => {
