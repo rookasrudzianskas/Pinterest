@@ -8,6 +8,8 @@ const HomeScreen =({ navigation }) => {
     const nhost = useNhostClient();
 
     const fetchPins = async () => {
+        // const response = nhost.graphql.getUrl();
+        // console.log(response);
         const { data, error } = await nhost.graphql.request(`
             query { pins {
                      id
