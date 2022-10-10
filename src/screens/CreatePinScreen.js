@@ -20,8 +20,9 @@ mutation MyMutation ($image: String!, $title: String) {
 `;
 
 const CreatePinScreen = () => {
-    const [image, setImage] = useState(null);
+    const [imageUri, setImageUri] = useState(null);
     const [title, setTitle] = useState('');
+    const uri = Platform.OS === "ios" ? imageUri.replace("file://", "") : imageUri;
     const nhost = useNhostClient();
     const navigation = useNavigation();
     const pickImage = async () => {
@@ -33,12 +34,13 @@ const CreatePinScreen = () => {
         });
 
         if (!result.cancelled) {
-            setImage(result.uri);
+            setImageUri(result.uri);
         }
     };
 
     const onSubmit = async () => {
         // @TODO upload the image to the storage bucket
+        uploadFile();
         // console.warn('Submit');
         const {data, error } = await nhost.graphql.request(CREATE_PIN_MUTATION, { title, image: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/pinterest/9.jpeg'});
         if(error) {
@@ -50,12 +52,20 @@ const CreatePinScreen = () => {
         // console.log(data);
     }
 
+    const uploadFile = async () => {
+        const result = await nhost.storage.upload({
+            name: '123.png',
+            type: 'image/png',
+            uri: imageUri,
+        })
+    }
+
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} className="mx-5">
             <Button title="Pick an image from camera roll" onPress={pickImage} />
-            <View className={`${image && 'border border-blue-200 border-[2px] rounded-xl w-full'}`}>
-                {image && <Image source={{ uri: image }} style={{ width: "100%", aspectRatio: 1, borderRadius: 10 }} />}
+            <View className={`${imageUri && 'border border-blue-200 border-[2px] rounded-xl w-full'}`}>
+                {imageUri && <Image source={{ uri: imageUri }} style={{ width: "100%", aspectRatio: 1, borderRadius: 10 }} />}
             </View>
             <TextInput value={title} onChangeText={setTitle} placeholder="Title..." className="py-2 bg-white w-full rounded-lg px-3 mt-5 border border-blue-200 border-[2px]"/>
             <Button title="Submit pin" className="bg-blue-500" onPress={onSubmit} />
