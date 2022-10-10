@@ -30,6 +30,7 @@ const PinScreen = () => {
     const pinId = route?.params?.id;
     const [pin, setPin] = useState(null);
     const nhost = useNhostClient();
+    const [imageUri, setImageUri] = useState('');
 
     useEffect(() => {
         if(pin?.image) {
@@ -42,6 +43,18 @@ const PinScreen = () => {
         navigation.goBack();
     }
 
+
+    const fetchImage = async () => {
+        const result = await nhost.storage.getPresignedUrl({
+            fileId: pin.image,
+        });
+        if(result.presignedUrl?.url) {
+            setImageUri(result.presignedUrl.url);
+        }
+        console.log(result);
+    }
+
+
     const fetchPin = async (pinId) => {
         const {data, error } = await nhost.graphql.request(GET_PIN_QUERY, {id: pinId});
         if(error) {
@@ -53,12 +66,13 @@ const PinScreen = () => {
     }
 
     useEffect(() => { fetchPin(pinId) ; }, [pinId]);
+    useEffect(() => { fetchImage() ; }, [pin]);
 
     return (
         <SafeAreaView className="bg-black">
             <View className="h-screen bg-black relative">
                 <View className="bg-black mt-4">
-                    <Image style={[styles.image, {borderTopLeftRadius: 35, borderTopRightRadius: 35, aspectRatio: ratio}]} source={{uri: pin?.image}} />
+                    <Image style={[styles.image, {borderTopLeftRadius: 35, borderTopRightRadius: 35, aspectRatio: ratio}]} source={{uri: imageUri}} />
                     <TouchableOpacity onPress={goBack} className="absolute top-5 left-5" activeOpacity={0.7}>
                         <Ionicons className="" name="chevron-back-outline" size={30} color="white" />
                     </TouchableOpacity>
