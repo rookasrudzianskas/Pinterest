@@ -51,7 +51,7 @@ const PinScreen = () => {
         }
     }
 
-    useEffect(() => { fetchPin() ; }, []);
+    useEffect(() => { fetchPin(pinId) ; }, [pinId]);
 
     return (
         <SafeAreaView className="bg-black">
