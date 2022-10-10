@@ -16,6 +16,7 @@ import LinkingConfiguration from './LinkingConfiguration';
 import PinScreen from "../screens/PinScreen";
 import CreatePinScreen from "../screens/CreatePinScreen";
 import AuthStackNavigator from "./AuthStackNavigator";
+import {useAuthenticationStatus} from "@nhost/react";
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -30,6 +31,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+    const { isLoading, isAuthenticated } = useAuthenticationStatus();
   return (
     <Stack.Navigator>
       <Stack.Screen name="Auth" component={AuthStackNavigator} options={{ headerShown: false }} />
