@@ -19,7 +19,7 @@ const HomeScreen =({ navigation }) => {
                      user_id
             } }
         `);
-        console.log(data);
+        // console.log(data);
     };
     useEffect(() => { fetchPins(); }, []);
 
