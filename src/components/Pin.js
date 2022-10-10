@@ -2,14 +2,24 @@ import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {AntDesign} from "@expo/vector-icons";
 import {useNavigation} from "@react-navigation/native";
+import {useNhostClient} from "@nhost/react";
 
 const Pin = ({pin: {id, title, image}}) => {
     const [ratio, setRatio] = useState(1);
     const [clicked, setClicked] = useState(false);
     const navigation = useNavigation();
+    const [imageUri, setImageUri] = useState('');
+    const nhost = useNhostClient();
+
     const onLine = () => {
 
     }
+
+    useEffect(() => {
+        const { presignedUrl, error } = await nhost.storage.getPresignedUrl({
+            fileId: image,
+        });
+    }, [image]);
 
     useEffect(() => {
         if(image) {
