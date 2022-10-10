@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Text, View, StyleSheet, ScrollView, useWindowDimensions, RefreshControl} from 'react-native';
 import Pin from "./Pin";
 
-const MasonryList = ({pins, refreshing, onRefresh}) => {
+const MasonryList = ({pins, refreshing = false, onRefresh = () => {}}) => {
     const width = useWindowDimensions().width;
     const numColumns = width < 500 ? 2 : 3;
     // const numColumns = Math.ceil(width / 350);
