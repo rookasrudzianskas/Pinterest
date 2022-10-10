@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, ScrollView, useWindowDimensions} from 'react-native';
+import {Text, View, StyleSheet, ScrollView, useWindowDimensions, RefreshControl} from 'react-native';
 import Pin from "./Pin";
 
-const MasonryList = ({pins}) => {
+const MasonryList = ({pins, refreshing, onRefresh}) => {
     const width = useWindowDimensions().width;
     const numColumns = width < 500 ? 2 : 3;
     // const numColumns = Math.ceil(width / 350);
     return (
-        <ScrollView contentContainerStyle={{paddingBottom: 0}} showsVerticalScrollIndicator={false}>
+        <ScrollView contentContainerStyle={{paddingBottom: 0}} showsVerticalScrollIndicator={false}
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+        >
             <View className="flex-1 bg-white" style={styles.container}>
                 {Array.from(Array(numColumns)).map((col, colIndex) => (
                     <View key={`column_${colIndex}`} style={styles.colOne}>
