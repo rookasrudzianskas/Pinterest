@@ -15,10 +15,15 @@ const Pin = ({pin: {id, title, image}}) => {
 
     }
 
-    useEffect(() => {
+    const fetchImage = async () => {
         const { presignedUrl, error } = await nhost.storage.getPresignedUrl({
             fileId: image,
         });
+        console.log("🚀",presignedUrl);
+    }
+
+    useEffect(() => {
+        fetchImage();
     }, [image]);
 
     useEffect(() => {
