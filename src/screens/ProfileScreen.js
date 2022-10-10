@@ -64,7 +64,7 @@ export default function ProfileScreen() {
           <Feather name="more-horizontal" size={21} color="black" />
         </TouchableOpacity>
       </View>
-        <MasonryList pins={PinsData} />
+        <MasonryList pins={user.pins} onRefresh={fetchUserData} />
     </ScrollView>
   );
 }
