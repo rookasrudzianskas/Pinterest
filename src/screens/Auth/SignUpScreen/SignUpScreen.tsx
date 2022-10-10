@@ -4,6 +4,7 @@ import SocialSignInButtons from "../components/SocialSignInButtons";
 import { useNavigation } from "@react-navigation/core";
 import { useState } from "react";
 import Colors from "../../../constants/Colors";
+import {useNhostClient} from "@nhost/react";
 
 const SignUpScreen = () => {
   const navigation = useNavigation();
@@ -11,12 +12,14 @@ const SignUpScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const nhost = useNhostClient();
 
   const onRegisterPressed = () => {
     console.warn("Sign up");
   };
 
   const onSignInPress = () => {
+    // @ts-ignore
     navigation.navigate("Sign in");
   };
 
