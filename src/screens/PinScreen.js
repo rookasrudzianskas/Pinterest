@@ -13,7 +13,7 @@ const PinScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const pinId = route?.params?.id;
-
+    const [pin, setPin] = useState(null);
     const nhost = useNhostClient();
     // const pin = pinsData.find(pin => pin.id === pinId);
 
@@ -48,6 +48,7 @@ const PinScreen = () => {
             }
         `);
         // console.log(data);
+        setPin(data.pins_by_pk);
     }
 
     useEffect(() => { fetchPin() ; }, []);
