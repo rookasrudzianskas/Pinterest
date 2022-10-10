@@ -55,8 +55,8 @@ function BottomTabNavigator() {
         name="TabOne"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Rokas Pinterest',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Pinterest',
+          tabBarIcon: ({ color }) => <FontAwesome name="home" size={26} color={color} />,
         })}
       />
       <BottomTab.Screen
@@ -64,7 +64,7 @@ function BottomTabNavigator() {
         component={TabTwoScreen}
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <FontAwesome name="user" size={26} color={color} />,
         }}
       />
     </BottomTab.Navigator>
