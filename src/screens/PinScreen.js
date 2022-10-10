@@ -5,32 +5,9 @@ import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {useNhostClient} from "@nhost/react";
 
-const PinScreen = () => {
-    const [ratio, setRatio] = useState(1);
-    const [clicked, setClicked] = useState(false);
-    const insets = useSafeAreaInsets();
-    const navigation = useNavigation();
-    const route = useRoute();
-    const pinId = route?.params?.id;
-    const [pin, setPin] = useState(null);
-    const nhost = useNhostClient();
-
-    // useEffect(() => {
-    //     if(pin?.image) {
-    //         // Here we are using the Image.getSize() method to get the width and height of the image and calculate the ratio.
-    //         Image.getSize(pin.image, (width, height) => setRatio(width / height));
-    //     }
-    // }, [pin.image]);
-
-    const goBack = () => {
-        // console.warn('Go back');
-        navigation.goBack();
-    }
-
-    const fetchPin = async (pinId) => {
-        const {data, error } = await nhost.graphql.request(`
-            query MyQuery {
-              pins_by_pk(id: "${pinId}") {
+const GET_PIN_QUERY = `
+query MyQuery ($id: uuid!) {
+              pins_by_pk(id: $id) {
                 created_at
                 id
                 image
@@ -42,10 +19,34 @@ const PinScreen = () => {
                   id
                 }
               }
-            }
-        `);
+            }`;
+
+const PinScreen = () => {
+    const [ratio, setRatio] = useState(1);
+    const [clicked, setClicked] = useState(false);
+    const insets = useSafeAreaInsets();
+    const navigation = useNavigation();
+    const route = useRoute();
+    const pinId = route?.params?.id;
+    const [pin, setPin] = useState(null);
+    const nhost = useNhostClient();
+
+    useEffect(() => {
+        if(pin?.image) {
+            // Here we are using the Image.getSize() method to get the width and height of the image and calculate the ratio.
+            Image.getSize(pin.image, (width, height) => setRatio(width / height));
+        }
+    }, [pin]);
+
+    const goBack = () => {
+        // console.warn('Go back');
+        navigation.goBack();
+    }
+
+    const fetchPin = async (pinId) => {
+        const {data, error } = await nhost.graphql.request(GET_PIN_QUERY, {id: pinId});
         if(error) {
-            Alert.alert('Error', error.message);
+            Alert.alert('Error', "Whoops! Something went wrong.");
         } else {
             setPin(data.pins_by_pk);
         }
