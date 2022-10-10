@@ -14,6 +14,7 @@ import TabTwoScreen from '../screens/ProfileScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import PinScreen from "../screens/PinScreen";
+import CreatePinScreen from "../screens/CreatePinScreen";
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -65,7 +66,7 @@ function BottomTabNavigator() {
         <BottomTab.Screen
             // @ts-ignore
             name="CreatePin"
-            component={TabOneScreen}
+            component={CreatePinScreen}
             // @ts-ignore
             options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
                 title: 'Pinterest',
