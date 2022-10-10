@@ -10,7 +10,7 @@ const MasonryList = ({pins}) => {
         <ScrollView contentContainerStyle={{paddingBottom: 0}} showsVerticalScrollIndicator={false}>
             <View className="flex-1 bg-white" style={styles.container}>
                 {Array.from(Array(numColumns)).map((col, colIndex) => (
-                    <View key={colIndex} style={styles.colOne}>
+                    <View key={`column_${colIndex}`} style={styles.colOne}>
                         {pins.filter((item, index) => index % numColumns === colIndex).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
                     </View>
                 ))}
