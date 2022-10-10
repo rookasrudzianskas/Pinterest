@@ -28,7 +28,6 @@ const PinScreen = () => {
         navigation.goBack();
     }
 
-
     return (
         <SafeAreaView className="bg-black">
             <View className="h-screen bg-black relative">
