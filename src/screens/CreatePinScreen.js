@@ -4,7 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 const CreatePinScreen = () => {
     const [image, setImage] = useState(null);
-
+    const [title, setTitle] = useState('');
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -20,6 +20,10 @@ const CreatePinScreen = () => {
         }
     };
 
+    const onSubmit = () => {
+        console.warn('Submit');
+    }
+
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} className="mx-5">
@@ -27,7 +31,8 @@ const CreatePinScreen = () => {
             <View className={`${image && 'border border-blue-200 border-[2px] rounded-xl w-full'}`}>
                 {image && <Image source={{ uri: image }} style={{ width: "100%", aspectRatio: 1, borderRadius: 10 }} />}
             </View>
-            <TextInput placeholder="Title..." className="py-2 bg-white w-full rounded-lg px-3 mt-5 border border-blue-200 border-[2px]"/>
+            <TextInput value={title} onChangeText={setTitle} placeholder="Title..." className="py-2 bg-white w-full rounded-lg px-3 mt-5 border border-blue-200 border-[2px]"/>
+            <Button title="Submit pin" className="bg-blue-500" onPress={onSubmit} />
         </View>
     );
 };
