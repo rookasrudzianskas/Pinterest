@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView} from 'react-native';
+import {Text, View, StyleSheet, Image, TouchableOpacity, SafeAreaView, Alert} from 'react-native';
 import {Ionicons} from "@expo/vector-icons";
 import pinsData from '../assets/data/pins';
 import {useSafeAreaInsets} from "react-native-safe-area-context";
@@ -15,8 +15,6 @@ const PinScreen = () => {
     const pinId = route?.params?.id;
     const [pin, setPin] = useState(null);
     const nhost = useNhostClient();
-    // const pin = pinsData.find(pin => pin.id === pinId);
-
 
     // useEffect(() => {
     //     if(pin?.image) {
@@ -47,8 +45,11 @@ const PinScreen = () => {
               }
             }
         `);
-        // console.log(data);
-        setPin(data.pins_by_pk);
+        if(error) {
+            Alert.alert('Error', error.message);
+        } else {
+            setPin(data.pins_by_pk);
+        }
     }
 
     useEffect(() => { fetchPin() ; }, []);
