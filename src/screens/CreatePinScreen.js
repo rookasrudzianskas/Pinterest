@@ -22,7 +22,6 @@ mutation MyMutation ($image: String!, $title: String) {
 const CreatePinScreen = () => {
     const [imageUri, setImageUri] = useState(null);
     const [title, setTitle] = useState('');
-    const uri = Platform.OS === "ios" ? imageUri.replace("file://", "") : imageUri;
     const nhost = useNhostClient();
     const navigation = useNavigation();
     const pickImage = async () => {
@@ -53,11 +52,13 @@ const CreatePinScreen = () => {
     }
 
     const uploadFile = async () => {
+        if(!imageUri) return;
+        const uri = Platform.OS === "ios" ? imageUri.replace("file://", "") : imageUri;
         const result = await nhost.storage.upload({
             name: '123.png',
             type: 'image/png',
-            uri: imageUri,
-        })
+            uri: uri,
+        });
     }
 
 
