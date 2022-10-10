@@ -4,6 +4,7 @@ import {Ionicons} from "@expo/vector-icons";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {useNhostClient} from "@nhost/react";
+import RemoteImage from "../components/RemoteImage";
 
 const GET_PIN_QUERY = `
 query MyQuery ($id: uuid!) {
@@ -22,7 +23,6 @@ query MyQuery ($id: uuid!) {
             }`;
 
 const PinScreen = () => {
-    const [ratio, setRatio] = useState(1);
     const [clicked, setClicked] = useState(false);
     const insets = useSafeAreaInsets();
     const navigation = useNavigation();
@@ -32,28 +32,9 @@ const PinScreen = () => {
     const nhost = useNhostClient();
     const [imageUri, setImageUri] = useState('');
 
-    useEffect(() => {
-        if(imageUri) {
-            // Here we are using the Image.getSize() method to get the width and height of the image and calculate the ratio.
-            Image.getSize(imageUri, (width, height) => setRatio(width / height));
-        }
-    }, [pin]);
-
     const goBack = () => {
         navigation.goBack();
     }
-
-
-    const fetchImage = async () => {
-        const result = await nhost.storage.getPresignedUrl({
-            fileId: pin.image,
-        });
-        if(result.presignedUrl?.url) {
-            setImageUri(result.presignedUrl.url);
-        }
-        console.log(result);
-    }
-
 
     const fetchPin = async (pinId) => {
         const {data, error } = await nhost.graphql.request(GET_PIN_QUERY, {id: pinId});
@@ -66,13 +47,12 @@ const PinScreen = () => {
     }
 
     useEffect(() => { fetchPin(pinId) ; }, [pinId]);
-    useEffect(() => { fetchImage() ; }, [pin]);
 
     return (
         <SafeAreaView className="bg-black">
             <View className="h-screen bg-black relative">
                 <View className="bg-black mt-4">
-                    <Image style={[styles.image, {borderTopLeftRadius: 35, borderTopRightRadius: 35, aspectRatio: ratio}]} source={{uri: imageUri}} />
+                    <RemoteImage fileId={pin?.image} />
                     <TouchableOpacity onPress={goBack} className="absolute top-5 left-5" activeOpacity={0.7}>
                         <Ionicons className="" name="chevron-back-outline" size={30} color="white" />
                     </TouchableOpacity>
