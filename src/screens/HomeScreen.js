@@ -2,6 +2,7 @@ import PinsData from '../assets/data/pins';
 import MasonryList from "../components/MasonryList";
 import {useEffect, useState} from "react";
 import {useNhostClient} from "@nhost/react";
+import {Alert} from "react-native";
 
 const HomeScreen =({ navigation }) => {
     const [pins, setPins] = useState([]);
@@ -20,12 +21,17 @@ const HomeScreen =({ navigation }) => {
             } }
         `);
         // console.log(data);
+        if(error) {
+            Alert.alert('Error', error.message);
+        } else {
+            setPins(data.pins);
+        }
     };
     useEffect(() => { fetchPins(); }, []);
 
   return (
       <>
-        <MasonryList pins={PinsData} />
+        <MasonryList pins={pins} />
       </>
   );
 }
