@@ -8,3 +8,9 @@ const RemoteImage = () => {
 };
 
 export default RemoteImage;
+
+const styles = StyleSheet.create({
+    image: {
+        width: '100%',
+    }
+});
