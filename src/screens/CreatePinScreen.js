@@ -32,8 +32,6 @@ const CreatePinScreen = () => {
             quality: 0.6,
         });
 
-        // console.log(result);
-
         if (!result.cancelled) {
             setImage(result.uri);
         }
