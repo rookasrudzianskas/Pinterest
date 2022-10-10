@@ -39,7 +39,6 @@ const PinScreen = () => {
     }, [pin]);
 
     const goBack = () => {
-        // console.warn('Go back');
         navigation.goBack();
     }
 
