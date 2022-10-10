@@ -41,24 +41,32 @@ const CreatePinScreen = () => {
         // @TODO upload the image to the storage bucket
         uploadFile();
         // console.warn('Submit');
-        const {data, error } = await nhost.graphql.request(CREATE_PIN_MUTATION, { title, image: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/pinterest/9.jpeg'});
-        if(error) {
-            // console.log(error);
-            Alert.alert('Error', 'Whoops! Something went wrong.');
-        } else {
-            navigation.goBack('');
-        }
+        // const {data, error } = await nhost.graphql.request(CREATE_PIN_MUTATION, { title, image: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/pinterest/9.jpeg'});
+        // if(error) {
+        //     // console.log(error);
+        //     Alert.alert('Error', 'Whoops! Something went wrong.');
+        // } else {
+        //     navigation.goBack('');
+        // }
         // console.log(data);
     }
 
     const uploadFile = async () => {
         if(!imageUri) return;
+        const parts = imageUri.split('/');
+        const name = parts[parts.length - 1];
+        const nameParts = name.split('.');
+        // this should be fixed
+        const extension = nameParts[nameParts.length - 1];
         const uri = Platform.OS === "ios" ? imageUri.replace("file://", "") : imageUri;
         const result = await nhost.storage.upload({
-            name: '123.png',
-            type: 'image/png',
-            uri: uri,
+            file: {
+                name: name,
+                type: `image/${extension}`,
+                uri: uri,
+            }
         });
+        console.log(result);
     }
 
 
