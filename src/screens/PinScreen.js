@@ -45,7 +45,8 @@ const PinScreen = () => {
     const fetchPin = async (pinId) => {
         const {data, error } = await nhost.graphql.request(GET_PIN_QUERY, {id: pinId});
         if(error) {
-            Alert.alert('Error', "Whoops! Something went wrong.");
+            // console.log(error);
+            Alert.alert('Error', 'Whoops! Something went wrong.');
         } else {
             setPin(data.pins_by_pk);
         }
