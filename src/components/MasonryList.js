@@ -1,16 +1,18 @@
-import React from 'react';
-import {Text, View, StyleSheet, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View, StyleSheet, ScrollView, useWindowDimensions} from 'react-native';
 import Pin from "./Pin";
 
 const MasonryList = ({pins}) => {
-    const numRows = 2;
+    const width = useWindowDimensions().width;
+    const numColumns = width < 500 ? 2 : 3;
+
     return (
         <ScrollView contentContainerStyle={{paddingBottom: 0}} showsVerticalScrollIndicator={false}>
             <View className="flex-1 bg-white" style={styles.container}>
 
-                {Array.from(Array(numRows)).map((col, colIndex) => (
+                {Array.from(Array(numColumns)).map((col, colIndex) => (
                     <View key={colIndex} style={styles.colOne}>
-                        {pins.filter((item, index) => index % numRows === colIndex).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
+                        {pins.filter((item, index) => index % numColumns === colIndex).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
                     </View>
                 ))}
             </View>
