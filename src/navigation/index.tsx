@@ -45,22 +45,35 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
-  return (
+  // @ts-ignore
+    return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Home"
       screenOptions={{
+        tabBarShowLabel: false,
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="TabOne"
+        name="Home"
         component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
+        // @ts-ignore
+        options={({ navigation }) => ({
           title: 'Pinterest',
           tabBarIcon: ({ color }) => <FontAwesome name="home" size={26} color={color} />,
         })}
       />
+        <BottomTab.Screen
+            // @ts-ignore
+            name="CreatePin"
+            component={TabOneScreen}
+            // @ts-ignore
+            options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
+                title: 'Pinterest',
+                tabBarIcon: ({ color }) => <FontAwesome name="plus" size={26} color={color} />,
+            })}
+        />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Profile"
         component={TabTwoScreen}
         options={{
           title: 'Profile',
