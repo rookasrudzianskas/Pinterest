@@ -5,6 +5,15 @@ import useCachedResources from './src/hooks/useCachedResources';
 import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/navigation';
 import PinScreen from "./src/screens/PinScreen";
+import * as SecureStore from "expo-secure-store";
+import { NhostClient } from "@nhost/react";
+window = undefined;
+
+const nhost = new NhostClient({
+  backendUrl: "https://zrgjwkhtxvwjnduihxev.nhost.run",
+    clientStorageType: "expo-secure-storage",
+        clientStorage: SecureStore,
+});
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
