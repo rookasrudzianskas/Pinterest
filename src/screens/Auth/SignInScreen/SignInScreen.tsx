@@ -4,24 +4,42 @@ import {
   StyleSheet,
   useWindowDimensions,
   ScrollView,
-  TextInput,
+  TextInput, Alert,
 } from "react-native";
+// @ts-ignore
 import Logo from "./logo.png";
 import CustomButton from "../components/CustomButton";
 import SocialSignInButtons from "../components/SocialSignInButtons";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+import {useNhostClient} from "@nhost/react";
 
 const SignInScreen = () => {
   const { height } = useWindowDimensions();
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const nhost = useNhostClient();
 
-  const onSignInPressed = () => {
-    console.log(data);
+  const onSignInPressed = async () => {
+    // console.log(data);
     // validate user
     // navigation.navigate('Home');
+    const result = await nhost.auth.signIn({
+      email,
+      password,
+    });
+
+    if (result.error) {
+      Alert.alert("Error signing up", result.error.message);
+    } else {
+      // navigate to pin screen
+      // @ts-ignore
+      navigation.navigate("Sign in");
+    }
+
+    console.log(result);
+
   };
 
   const onForgotPasswordPressed = () => {
@@ -29,6 +47,7 @@ const SignInScreen = () => {
   };
 
   const onSignUpPress = () => {
+    // @ts-ignore
     navigation.navigate("Sign up");
   };
 

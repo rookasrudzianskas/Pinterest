@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, TextInput } from "react-native";
+import { View, Text, StyleSheet, ScrollView, TextInput, Alert } from "react-native";
 import CustomButton from "../components/CustomButton";
 import SocialSignInButtons from "../components/SocialSignInButtons";
 import { useNavigation } from "@react-navigation/core";
@@ -15,16 +15,23 @@ const SignUpScreen = () => {
     const nhost = useNhostClient();
 
     const onRegisterPressed = async () => {
-        // console.warn("Sign up");
         const result = await nhost.auth.signUp({
             email,
             password,
             options: {
                 displayName: name,
-            }
+            },
         });
+
+        if (result.error) {
+            Alert.alert("Error signing up", result.error.message);
+        } else {
+            // navigate to pin screen
+            // @ts-ignore
+            navigation.navigate("Sign in");
+        }
+
         console.log(result);
-        console.warn("User created");
     };
 
     const onSignInPress = () => {
