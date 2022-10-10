@@ -3,15 +3,16 @@ import {Text, View, StyleSheet, ScrollView} from 'react-native';
 import Pin from "./Pin";
 
 const MasonryList = ({pins}) => {
+    const numRows = 2;
     return (
         <ScrollView contentContainerStyle={{paddingBottom: 0}} showsVerticalScrollIndicator={false}>
             <View className="flex-1 bg-white" style={styles.container}>
-                <View style={styles.colOne}>
-                    {pins.filter((item, index) => index % 2 === 0).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
-                </View>
-                <View style={styles.colTwo}>
-                    {pins.filter((item, index) => index % 2 === 1).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
-                </View>
+
+                {Array.from(Array(numRows)).map((col, colIndex) => (
+                    <View key={colIndex} style={styles.colOne}>
+                        {pins.filter((item, index) => index % numRows === colIndex).map((pin, index) => (<Pin key={pin.id} pin={pin} />))}
+                    </View>
+                ))}
             </View>
         </ScrollView>
     );
