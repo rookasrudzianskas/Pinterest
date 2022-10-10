@@ -33,9 +33,9 @@ const PinScreen = () => {
     const [imageUri, setImageUri] = useState('');
 
     useEffect(() => {
-        if(pin?.image) {
+        if(imageUri) {
             // Here we are using the Image.getSize() method to get the width and height of the image and calculate the ratio.
-            Image.getSize(pin.image, (width, height) => setRatio(width / height));
+            Image.getSize(imageUri, (width, height) => setRatio(width / height));
         }
     }, [pin]);
 
