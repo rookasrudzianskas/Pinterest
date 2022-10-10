@@ -5,6 +5,7 @@ import Pin from "./Pin";
 const MasonryList = ({pins}) => {
     const width = useWindowDimensions().width;
     const numColumns = width < 500 ? 2 : 3;
+    // const numColumns = Math.ceil(width / 350);
 
     return (
         <ScrollView contentContainerStyle={{paddingBottom: 0}} showsVerticalScrollIndicator={false}>
